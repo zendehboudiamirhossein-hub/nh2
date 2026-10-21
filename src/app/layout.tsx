@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 export const metadata: Metadata = {
   title: "پنل مدیریت نگهبان",
   description:
-    "پنل مدیریت اپلیکیشن کنترل والدین نگهبان — مشاهده لاگ کارکرد گوشی و لیست برنامه‌ها",
+    "پنل مدیریت اپلیکیشن کنترل سوژه - مشاهده لاگ کارکرد گوشی و لیست برنامه‌ها",
   icons: {
     icon:
       "data:image/svg+xml," +
