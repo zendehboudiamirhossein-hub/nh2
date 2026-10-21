@@ -161,8 +161,19 @@
 }
 
 /* ---------- نقشه leaflet (تب موقعیت) ---------- */
+/*
+ * کاشی‌های OpenStreetMap استاندارد روشن هستند. برای هماهنگی با تم دارک،
+ * فیلتر invert+hue-rotate روی لایه‌ی tile اعمال می‌کنیم. این کار بدون نیاز به
+ * API key (که CARTO dark_all الان می‌خواهد) نقشه را تیره می‌کند.
+ */
 .leaflet-container {
   font-family: var(--font-sans);
+  background: #0a0e17;
+}
+.leaflet-tile-pane {
+  /* invert رنگ‌ها برای شبیه‌سازی تم تیره، hue-rotate برای رنگ نئونی،
+     brightness+contrast برای خوانایی متن */
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
 }
 .leaflet-container .leaflet-popup-content {
   margin: 10px 14px;
@@ -182,6 +193,8 @@
   background: rgba(10, 14, 23, 0.75) !important;
   color: #93a0b8 !important;
   font-size: 9px !important;
+  /* فیلتر invert را برای attribution برمی‌گردانیم تا متن خوانا بماند */
+  filter: invert(1) hue-rotate(180deg);
 }
 .leaflet-control-attribution a {
   color: #93a0b8 !important;
@@ -191,6 +204,11 @@
   background: #101624;
   color: #eaf0fa;
   border: 1px solid #223049;
+  /* popup باید بدون فیلتر بماند چون روی tile-pane اعمال شده */
+}
+/* دکمه‌های zoom باید بدون فیلتر بمانند */
+.leaflet-bar {
+  filter: invert(1) hue-rotate(180deg);
 }
 
 /* پین نئونی موقعیت دستگاه */
