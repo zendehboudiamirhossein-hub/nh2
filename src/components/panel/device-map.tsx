@@ -17,10 +17,14 @@ import { fmtDateTime, faDigits } from "./format";
 
 /**
  * نقشه‌ی جهان تعاملی با موقعیت دقیق دستگاه:
- * - کاشی‌های تیره CARTO (هماهنگ با تم دارک نئون)
+ * - کاشی‌های OpenStreetMap (رایگان، بدون نیاز به API key)
  * - نقطه‌ی نئونی چشمک‌زن روی آخرین موقعیت + دایره‌ی دقت
  * - نقطه‌های کوچک بنفش برای تاریخچه (۳۰ مورد آخر)
  * - زوم با اسکرول/دکمه‌ها از سطح جهان (۲) تا خیابان (۱۹)
+ *
+ * نکته: کاشی‌های CARTO dark_all اخیراً به API key نیاز دارند (خطای
+ * "API KEY REQUIRED"). به‌جای آن از کاشی‌های استاندارد OpenStreetMap استفاده
+ * می‌کنیم که همیشه رایگان و قابل دسترس هستند.
  */
 
 function Recenter({ pos }: { pos: [number, number] }) {
@@ -109,11 +113,17 @@ export default function DeviceMap({
           className="h-80 w-full"
           style={{ background: "#0a0e17" }}
         >
+          {/*
+            کاشی‌های OpenStreetMap استاندارد (رایگان، بدون API key).
+            CARTO dark_all اخیراً API key اجباری اضافه کرده و صفحه‌ی سیاه
+            با نوشته‌ی «API KEY REQUIRED» می‌داد. OSM همیشه کار می‌کند.
+            برای حفظ ظاهر تیره، یک لایه‌ی فیلتر CSS روی نقشه می‌اندازیم.
+          */}
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            subdomains="abcd"
+            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             maxZoom={19}
+            subdomains="abc"
           />
 
           {/* دایره‌ی دقت موقعیت */}
