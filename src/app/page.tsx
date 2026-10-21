@@ -113,7 +113,7 @@ export default function Home() {
               پنل مدیریت نگهبان
             </h1>
             <p className="text-[11px] text-muted-foreground leading-tight">
-              کنترل والدین — گزارش کارکرد و برنامه‌ها
+              کنترل سوژه — گزارش کارکرد و برنامه‌ها
             </p>
           </div>
           <div className="ms-auto flex items-center gap-2">
